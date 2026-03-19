@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compassion International Guatemala</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="../css/estilos.css">
+
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="../index.html">Portal ONG</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../mapa.html">Mapa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../analisis.html">Análisis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../organizaciones.html">Organizaciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <main class="flex-grow-1">
+        <section class="py-5 text-center bg-white">
+            <div class="container">
+                <h1 class="fw-bold">Organización: Compassion International Guatemala</h1>
+            </div>
+        </section>
+
+
+
+        <div class="container">
+            <section class='text-left'>
+                <h3 class="fw-bold">Proyectos ejecutados</h3>
+                <ul>
+                    <li>Centro de Recursos Comunitarios para el Aprendizaje - CERCA</li>
+                </ul>
+
+                <h3 class="fw-bold">Mapa de intervenciones</h3>
+
+            </section>
+        </div>
+        <div class="container my-4">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <div class="folium-map" id="map"></div>
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+                    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+                    <script>
+                        var sudoeste = L.latLng(13.5, -92.5);
+                        var noreste = L.latLng(17.8, -88.0);
+                        var limites = L.latLngBounds(sudoeste, noreste)
+
+                        var map_aea4daf8a419a8c4655ebf2b3db173ef = L.map(
+                            "map",
+                            {
+                                center: [15.59755135, -90.0433808843107],
+                                crs: L.CRS.EPSG3857,
+                                zoom: 10,
+                                maxBounds: limites,
+                                maxBoundsViscosity: 1.0,
+                                zoomControl: true,
+                                preferCanvas: false,
+                            }
+                        );
+
+                        fetch("../js/guatemala.json")
+                            .then(res => res.json())
+                            .then(data => {
+                                const capa = L.geoJSON(data, {
+                                    style: {
+                                        color: "#0d6efd",
+                                        weight: 2,
+                                        fillColor: "#0d6efd",
+                                        fillOpacity: 0.1
+                                    }
+                                }).addTo(map_aea4daf8a419a8c4655ebf2b3db173ef);
+
+                                // Ajusta el mapa al área del GeoJSON
+                                map_aea4daf8a419a8c4655ebf2b3db173ef.fitBounds(capa.getBounds());
+                            });
+
+                        var tile_layer_8250b9c01547e8d341dff9296f886a0f = L.tileLayer(
+                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            { "attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false }
+                        ).addTo(map_aea4daf8a419a8c4655ebf2b3db173ef);
+
+                        var iconos = {
+                            compassion: L.icon({
+                                iconUrl: "../images/pin2.png",
+                                iconSize: [35, 35],
+                                inconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
+                            })
+                        }
+
+                        function marcadorPersonalizado(lat, lng, organizacion, popupHTML) {
+                            return L.marker([lat, lng], {
+                                icon: iconos[organizacion]
+                            })
+                                .addTo(map_aea4daf8a419a8c4655ebf2b3db173ef)
+                                .bindPopup(popupHTML)
+                        }
+
+                        marcadorPersonalizado(
+                            15.75645,
+                            -90.27761,
+                            "compassion",
+                            "<b>Compassion International Guatemala</b><br><i>Centro de Recursos Comunitarios para el Aprendizaje – CERCA</i><br>Aldea Limón Yalicar"
+                        );
+
+                        marcadorPersonalizado(
+                            15.4386527,
+                            -89.8091517686214,
+                            "compassion",
+                            "<b>Compassion International Guatemala</b><br><i>Centro de Recursos Comunitarios para el Aprendizaje – CERCA</i><br>Aldea Chulac Centro,   Caserío Chulac Seococ y Cabañas"
+                        );
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <p class="mb-0">© 2026 Fundación Miguel Torrebiarte - Portal de Proyectos</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
