@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Miguel Torrebiarte Sohanin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="../css/estilos.css">
+
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="../index.html">Portal ONG</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../mapa.html">Mapa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../analisis.html">Análisis</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../organizaciones.html">Organizaciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow-1">
+
+        <section class="py-5 text-center bg-white">
+            <div class="container">
+                <h1 class="fw-bold">Organización: Fundación Miguel Torrebiarte Sohanin</h1>
+            </div>
+        </section>
+
+        <div class="container">
+            <section>
+                <h3 class="fw-bold">Proyectos ejecutados</h3>
+                <ul>
+                    <li>Apoyo al Instituto de Artes y Oficios María Lantzendorffer</li>
+                    <li>Festival del Conocimiento</li>
+                    <li>Lectoaventuras</li>
+                    <li>PROFUTURO</li>
+                    <li>Centro de Atención Tecnológica (CEATEC)</li>
+                    <li>FUNDAMITO</li>
+                    <li>Espacio Amigo de la Lactancia Materna</li>
+                </ul>
+
+                <h3 class="fw-bold">Mapa de intervenciones</h3>
+
+            </section>
+        </div>
+
+        <div class="container my-4">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <div class="folium-map" id="map"></div>
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+                    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+                    <script>
+                        var sudoeste = L.latLng(13.5, -92.5);
+                        var noreste = L.latLng(17.8, -88.0);
+                        var limites = L.latLngBounds(sudoeste, noreste)
+
+                        var map_99ef164ab822abb95c76b15e88e64d42 = L.map(
+                            "map",
+                            {
+                                center: [15.465527916666666, -90.38058475000001],
+                                crs: L.CRS.EPSG3857,
+                                zoom: 10,
+                                maxBounds: limites,
+                                maxBoundsViscosity: 1.0,
+                                zoomControl: true,
+                                preferCanvas: false,
+                            }
+                        );
+
+                        fetch("../js/guatemala.json")
+                            .then(res => res.json())
+                            .then(data => {
+                                const capa = L.geoJSON(data, {
+                                    style: {
+                                        color: "#0d6efd",
+                                        weight: 2,
+                                        fillColor: "#0d6efd",
+                                        fillOpacity: 0.1
+                                    }
+                                }).addTo(map_99ef164ab822abb95c76b15e88e64d42);
+
+                                // Ajusta el mapa al área del GeoJSON
+                                map_99ef164ab822abb95c76b15e88e64d42.fitBounds(capa.getBounds());
+                            });
+                        var tile_layer_1b330c0e92290668336de96c1e6413fe = L.tileLayer(
+                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            { "attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false }
+                        ).addTo(map_99ef164ab822abb95c76b15e88e64d42);
+
+                        var iconos = {
+                            torrebiarte: L.icon({
+                                iconUrl: "../images/pin1.png",
+                                iconSize: [35, 35],
+                                iconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
+                            })
+                        }
+
+                        function marcadorPersonalizado(lat, lng, organizacion, popupHTML) {
+                            return L.marker([lat, lng], {
+                                icon: iconos[organizacion]
+                            })
+                                .addTo(map_99ef164ab822abb95c76b15e88e64d42)
+                                .bindPopup(popupHTML)
+                        }
+
+
+                        marcadorPersonalizado(
+                            15.812473,
+                            -90.291431,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>PROFUTURO</i><br>EORM Aldea Limón Imperial, EORM Aldea Limón Norte, EORM Limón Sur, EORM Isla del Norte"
+                        );
+
+                        marcadorPersonalizado(
+                            15.470239,
+                            -90.373521,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>PROFUTURO<br>EOUN Martha Ruíz de Juárez JV, EORM Cantón Pampur, EORM Aldea Paniste, EORM Aldea Santa Inés Chicar, EORM Aquil Grande, EOUV de varones JV, EORM Caserío Chiyey, EORM Comunidad Agua Bendita, EORM Aldea Chiyuc, EORM Aldea Las Pacayas JV, EORM Aldea Nisnic, EORM Cantón Las Arrugas, EORM No. 2 Chiyuc JV, EOUM Colegio Nuestra señora de los desamparados."
+                        );
+
+                        marcadorPersonalizado(
+                            15.36567,
+                            -90.47924,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>"
+                        );
+
+                        marcadorPersonalizado(
+                            15.423617,
+                            -90.331001,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>EOUM Barrio San Augustin, EORM Aldea Campat, EORM Aldea Paapa."
+                        );
+
+                        marcadorPersonalizado(
+                            15.470239,
+                            -90.373521,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>Centro de Atención Tecnológica (CEATEC)</i><br>Caserío Venecia"
+                        );
+
+                        marcadorPersonalizado(
+                            15.42362,
+                            -90.330929,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>FUNDAMITO</i><br>EORM Caserío Magdalena Chamisun, EORM Aldea Lama, EORM Aldea Chamil, EORM Aldea San Marcos, EORM Caserío Sesibche, EORM Aldea Saquija, EORM Aldea Satexa, EORM Santa Cecilia Chajaneb"
+                        );
+
+                        marcadorPersonalizado(
+                            15.477815,
+                            -90.310303,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>FUNDAMITO</i><br>EORM Aldea Chiguoyo, EORM Aldea Tanchi Raxahá, EORM Caserío La Esperanza Sehubub, EORM Caserío Toontzul Chioya"
+                        );
+                        ;
+                        marcadorPersonalizado(
+                            15.365643,
+                            -90.479059,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>FUNDAMITO</i><br>EORM Vista Hermosa Las Flores, EORM Aldea Pampache, EORM Aldea Najtilabaj, EORM Caserío El Zacatón, EORM Cumbre de PAMUC"
+                        );
+                        marcadorPersonalizado(
+                            15.363576,
+                            -90.487426,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><i>PROFUTURO<br>Espacio Amigo de la Lactancia Materna</i><br>Luces del Norte S.A."
+                        );
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <p class="mb-0">© 2026 Fundación Miguel Torrebiarte - Portal de Proyectos</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
