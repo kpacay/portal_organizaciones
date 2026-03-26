@@ -12,32 +12,7 @@
 
 <body class="bg-light d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="../index.html">Portal ONG</a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../mapa.html">Mapa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../analisis.html">Análisis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../organizaciones.html">Organizaciones</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="nav-placeholder"></div>
     </header>
 
     <main class="flex-grow-1">
@@ -58,6 +33,13 @@
                 <p class="text-muted">No hay ubicaciones válidas registradas para esta organización.</p>
 
             </section>
+            <script>
+                fetch('/organizaciones/nav.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('nav-placeholder').innerHTML = data;
+                    })
+            </script>
         </div>
     </main>
 

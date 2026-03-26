@@ -12,32 +12,7 @@
 <body class="bg-light d-flex flex-column min-vh-100">
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">Portal RAC</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="mapa.html">Mapa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="analisis.html">Análisis</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="organizaciones.html">Organizaciones</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="nav-placeholder"></div>
   </header>
 
   <section class="py-5 text-center bg-white">
@@ -127,6 +102,14 @@
     <nav class="mt-4">
       <ul class="pagination justify-content-center" id="pagination"></ul>
     </nav>
+
+    <script>
+      fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('nav-placeholder').innerHTML = data;
+        })
+    </script>
   </main>
 
   <footer class="bg-primary text-white text-center py-3">

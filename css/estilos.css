@@ -42,12 +42,172 @@ body {
 }
 
 .card-hover:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    transition: 0.3s ease;
+}
+
+.img-org {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
 }
 
 #map {
     width: 100%;
     height: 600px;
     margin-top: 20px;
+}
+
+#carouselLogos {
+    padding: 20px 0;
+}
+
+.logo-item {
+    max-height: 100px;
+}
+
+.logo-card {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: 90px;
+    transition: all 0.3s ease;
+}
+
+.logo-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.bg-white {
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+#carouselObjetivos {
+    min-height: 220px;
+}
+
+#carouselObjetivos .carousel-inner {
+    overflow: hidden;
+}
+
+#carouselObjetivos .carousel-item {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carouselObjetivos .card {
+    border-radius: 15px;
+    min-height: 140px;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+#carouselObjetivos p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+h3,
+h4 {
+    letter-spacing: 0.5px;
+}
+
+.divider {
+    width: 350px;
+    height: 2px;
+    background: #1e3a5f;
+    border-radius: 5px;
+}
+
+.titulo-sub {
+    font-weight: 600;
+    color: #1e3a5f;
+    margin-top: 10px;
+}
+
+.frase {
+    max-width: 700px;
+    margin: 0 auto;
+    font-style: italic;
+    font-size: 1.05rem;
+}
+
+.radial-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+.centro {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.centro img {
+    max-width: 70%;
+}
+
+.eje {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 175px);
+    width: 180px;
+    padding: 15px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.eje1 {
+    background: #8e44ad;
+}
+
+.eje2 {
+    background: #27ae60;
+}
+
+.eje3 {
+    background: #16a085;
+}
+
+.eje4 {
+    background: #e74c3c;
+}
+
+.eje5 {
+    background: #f39c12;
+}
+
+#carouselEjes .carousel-inner {
+    overflow: visible;
 }

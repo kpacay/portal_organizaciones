@@ -10,33 +10,9 @@
 <body class="bg-light d-flex flex-column min-vh-100">
 
   <header>
-    <nav class=" navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">Portal RAC</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="mapa.html">Mapa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="analisis.html">Análisis</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="organizaciones.html">Organizaciones</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="nav-placeholder"></div>
   </header>
+
 
   <section class="py-5 text-center bg-white">
     <div class="container">
@@ -51,7 +27,7 @@
 
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-hover shadow-sm h-100 position-relative">
-            <img src="./images/asoconi.png" class="card-img-top" alt="Asociación CONI">
+            <img src="./images/asoconi.png" class="card-img-top img-org" alt="Asociación CONI">
             <div class="card-body text-center">
               <h5 class="card-title">Asociación CONI</h5>
               <a href="organizaciones/org_1.html" class="stretched-link"></a>
@@ -60,8 +36,8 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card card-hover h-100 position-relative">
-            <img src="./images/compassion.png" class="card-img-top" alt="Compassion International Guatemala">
+          <div class="card card-hover shadow-sm h-100 position-relative">
+            <img src="./images/compassion.png" class="card-img-top img-org" alt="Compassion International Guatemala">
             <div class="card-body text-center">
               <h5 class="card-title">Compassion International Guatemala</h5>
               <a href="organizaciones/org_2.html" class="stretched-link"></a>
@@ -71,7 +47,7 @@
 
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-hover shadow-sm h-100 position-relative">
-            <img src="./images/Fmts.png" class="card-img-top" alt="Fundación Miguel Torrebiarte Sohanin">
+            <img src="./images/Fmts.png" class="card-img-top img-org" alt="Fundación Miguel Torrebiarte Sohanin">
             <div class="card-body text-center">
               <h5 class="card-title">Fundación Miguel Torrebiarte Sohanin</h5>
               <a href="organizaciones/org_3.html" class="stretched-link"></a>
@@ -81,7 +57,7 @@
 
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-hover shadow-sm h-100 position-relative">
-            <img src="./images/mercycorps.png" class="card-img-top" alt="Mercy Corps">
+            <img src="./images/mercycorps.png" class="card-img-top img-org" alt="Mercy Corps">
             <div class="card-body text-center">
               <h5 class="card-title">Mercy Corps</h5>
               <a href="organizaciones/org_5.html" class="stretched-link"></a>
@@ -91,7 +67,7 @@
 
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-hover shadow-sm h-100 position-relative">
-            <img src="./images/conexion.png" class="card-img-top" alt="Conexion">
+            <img src="./images/conexion.png" class="card-img-top img-org" alt="Conexion">
             <div class="card-body text-center">
               <h5 class="card-title">Conexion</h5>
               <a href="organizaciones/org_6.html" class="stretched-link"></a>
@@ -101,7 +77,7 @@
 
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card card-hover shadow-sm h-100 position-relative">
-            <img src="./images/edm.png" class="card-img-top" alt="Enfants du monde">
+            <img src="./images/edm.png" class="card-img-top img-org" alt="Enfants du monde">
             <div class="card-body text-center">
               <h5 class="card-title">Enfants du monde</h5>
               <a href="organizaciones/org_6.html" class="stretched-link"></a>
@@ -112,6 +88,13 @@
       </div>
     </div>
 
+    <script>
+      fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('nav-placeholder').innerHTML = data;
+        })
+    </script>
   </main>
 
   <footer class="bg-primary text-white text-center py-3">

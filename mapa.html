@@ -14,33 +14,9 @@
 
 <body class="bg-light d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html">Portal RAC</a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="mapa.html">Mapa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="analisis.html">Análisis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="organizaciones.html">Organizaciones</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="nav-placeholder"></div>
     </header>
+
 
     <div class='py-5 text-center bg-white'>
         <div class="container">
@@ -59,6 +35,14 @@
                     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
                     <script>
+                        //NAV
+                        fetch('nav.html')
+                            .then(response => response.text())
+                            .then(data => {
+                                document.getElementById('nav-placeholder').innerHTML = data;
+                            })
+
+                        //MAPA
                         var sudoeste = L.latLng(13.5, -92.5);
                         var noreste = L.latLng(17.8, -88.0);
                         var limites = L.latLngBounds(sudoeste, noreste)
@@ -79,27 +63,27 @@
 
                         // RESALTAR MAPA 
 
-fetch("../js/departamentos.json")
-    .then(res => res.json())
-    .then(data => {
-        const altaVerapaz = {
-            type: "FeatureCollection",
-            features: data.features.filter(f =>
-                f.properties.shapeName === "Alta Verapaz"
-            )
-        };
+                        fetch("../js/departamentos.json")
+                            .then(res => res.json())
+                            .then(data => {
+                                const altaVerapaz = {
+                                    type: "FeatureCollection",
+                                    features: data.features.filter(f =>
+                                        f.properties.shapeName === "Alta Verapaz"
+                                    )
+                                };
 
-        const capa = L.geoJSON(altaVerapaz, {
-            style: {
-                color: "#0d6efd",
-                weight: 2,
-                fillColor: "#0d6efd",
-                fillOpacity: 0.2
-            }
-        }).addTo(map_00d8d78c919f1c16b091325d12a31439);
+                                const capa = L.geoJSON(altaVerapaz, {
+                                    style: {
+                                        color: "#0d6efd",
+                                        weight: 2,
+                                        fillColor: "#0d6efd",
+                                        fillOpacity: 0.2
+                                    }
+                                }).addTo(map_00d8d78c919f1c16b091325d12a31439);
 
-        map_00d8d78c919f1c16b091325d12a31439.fitBounds(capa.getBounds());
-    });
+                                map_00d8d78c919f1c16b091325d12a31439.fitBounds(capa.getBounds());
+                            });
                         var tile_layer_8250b9c01547e8d341dff9296f886a0f = L.tileLayer(
                             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                             { "attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false }
@@ -125,20 +109,20 @@ fetch("../js/departamentos.json")
                                 inconAnchor: [17, 35],
                                 popupAnchor: [0, -35]
                             }),
-    
-    // ... los que ya tienes ...
-    enfants: L.icon({
-        iconUrl: "../images/pin5.png",
-        iconSize: [35, 35],
-        iconAnchor: [17, 35],
-        popupAnchor: [0, -35]
-    }),
-    conexion: L.icon({
-        iconUrl: "../images/pin4.png",
-        iconSize: [35, 35],
-        iconAnchor: [17, 35],
-        popupAnchor: [0, -35]
-    })
+
+                            // ... los que ya tienes ...
+                            enfants: L.icon({
+                                iconUrl: "../images/pin5.png",
+                                iconSize: [35, 35],
+                                iconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
+                            }),
+                            conexion: L.icon({
+                                iconUrl: "../images/pin4.png",
+                                iconSize: [35, 35],
+                                iconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
+                            })
 
                         }
 
@@ -293,61 +277,61 @@ fetch("../js/departamentos.json")
                             "<b>Asociación CONI</b><br>Proyecto de apoyo a la implementación de la educación inicial en los CECODIIS en colaboración con Mineduc"
                         );
                         // SECCIÓN CONEXION
-marcadorPersonalizado(
-    15.799191,
-    -90.303761,
-    "conexion",
-    "<b>CONEXION</b><br>Jóvenes conectando territorios sostenibles"
-);
-// SECCIÓN ENFANTS DU MONDE
-marcadorPersonalizado(
-    15.470024,
-    -90.366590,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Educación Bilingüe Intercultural"
-);
+                        marcadorPersonalizado(
+                            15.799191,
+                            -90.303761,
+                            "conexion",
+                            "<b>CONEXION</b><br>Jóvenes conectando territorios sostenibles"
+                        );
+                        // SECCIÓN ENFANTS DU MONDE
+                        marcadorPersonalizado(
+                            15.470024,
+                            -90.366590,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Educación Bilingüe Intercultural"
+                        );
 
-marcadorPersonalizado(
-    15.788628,
-    -89.612747,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.788628,
+                            -89.612747,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
 
-marcadorPersonalizado(
-    15.310709,
-    -90.235187,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.310709,
+                            -90.235187,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
 
-marcadorPersonalizado(
-    15.434526,
-    -90.326157,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.434526,
+                            -90.326157,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
 
-marcadorPersonalizado(
-    15.475463,
-    -90.317086,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.475463,
+                            -90.317086,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
 
-marcadorPersonalizado(
-    15.468903,
-    -90.382794,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.468903,
+                            -90.382794,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
 
-marcadorPersonalizado(
-    15.323254,
-    -90.357144,
-    "enfants",
-    "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-);
+                        marcadorPersonalizado(
+                            15.323254,
+                            -90.357144,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
                         ;
                     </script>
                 </div>
