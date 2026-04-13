@@ -34,7 +34,7 @@
 
             </section>
             <script>
-                fetch('/organizaciones/nav.html')
+                fetch('../organizaciones/nav.html')
                     .then(response => response.text())
                     .then(data => {
                         document.getElementById('nav-placeholder').innerHTML = data;
