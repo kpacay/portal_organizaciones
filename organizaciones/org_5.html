@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercy Corps</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css" />
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 
@@ -29,17 +30,99 @@
                 </ul>
 
                 <h3 class="fw-bold">Mapa de intervenciones</h3>
-                <p class="text-muted">No hay ubicaciones válidas registradas para esta organización.</p>
-
             </section>
         </div>
-        <script>
-            fetch('../organizaciones/nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('nav-placeholder').innerHTML = data;
-                })
-        </script>
+
+        <div class="container my-4">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <div class="folium-map" id="map"></div>
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+                    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                    <script>
+                        fetch('../organizaciones/nav.html')
+                            .then(response => response.text())
+                            .then(data => {
+                                document.getElementById('nav-placeholder').innerHTML = data;
+                            })
+
+                        var sudoeste = L.latLng(13.5, -92.5);
+                        var noreste = L.latLng(17.8, -88.0);
+                        var limites = L.latLngBounds(sudoeste, noreste)
+
+                        var map_aea4daf8a419a8c4655ebf2b3db173ef = L.map(
+                            "map",
+                            {
+                                center: [15.59755135, -90.0433808843107],
+                                crs: L.CRS.EPSG3857,
+                                zoom: 10,
+                                maxBounds: limites,
+                                maxBoundsViscosity: 1.0,
+                                zoomControl: true,
+                                preferCanvas: false,
+                            }
+                        );
+
+                        fetch("../js/departamentos.json")
+                            .then(res => res.json())
+                            .then(data => {
+                                const altaVerapaz = {
+                                    type: "FeatureCollection",
+                                    features: data.features.filter(f =>
+                                        f.properties.shapeName === "Alta Verapaz"
+                                    )
+                                };
+                                const capa = L.geoJSON(altaVerapaz, {
+                                    style: {
+                                        color: "#0d6efd",
+                                        weight: 2,
+                                        fillColor: "#0d6efd",
+                                        fillOpacity: 0.1
+                                    }
+                                }).addTo(map_aea4daf8a419a8c4655ebf2b3db173ef);
+
+                                // Ajusta el mapa al área del GeoJSON
+                                map_aea4daf8a419a8c4655ebf2b3db173ef.fitBounds(capa.getBounds());
+                            });
+
+                        var tile_layer_8250b9c01547e8d341dff9296f886a0f = L.tileLayer(
+                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            { "attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false }
+                        ).addTo(map_aea4daf8a419a8c4655ebf2b3db173ef);
+
+                        var iconos = {
+                            mercy: L.icon({
+                                iconUrl: "../images/pin6.png",
+                                iconSize: [35, 35],
+                                iconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
+                            })
+                        }
+
+                        function marcadorPersonalizado(lat, lng, organizacion, popupHTML) {
+                            return L.marker([lat, lng], {
+                                icon: iconos[organizacion]
+                            })
+                                .addTo(map_aea4daf8a419a8c4655ebf2b3db173ef)
+                                .bindPopup(popupHTML)
+                        }
+                        marcadorPersonalizado(
+                            15.6925992670395, -90.65929202883535,
+                            "mercy",
+                            "<b>Mercy Corps</b><br>Kaw Ixqa'al NIÑA FUERTE"
+                        );
+                        marcadorPersonalizado(
+                            15.678650150225723, -90.65348565767069,
+                            "mercy",
+                            "<b>Mercy Corps</b><br>Kaw Ixqa'al NIÑA FUERTE"
+                        );
+
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="bg-primary text-white text-center py-3">

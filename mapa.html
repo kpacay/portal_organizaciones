@@ -63,7 +63,7 @@
 
                         // RESALTAR MAPA 
 
-                        fetch("../js/departamentos.json")
+                        fetch("./js/departamentos.json")
                             .then(res => res.json())
                             .then(data => {
                                 const altaVerapaz = {
@@ -98,13 +98,13 @@
                                 popupAnchor: [0, -35]
                             }),
                             compassion: L.icon({
-                                iconUrl: "./images/pin2.png",
+                                iconUrl: "./images/pin3.png",
                                 iconSize: [35, 35],
                                 inconAnchor: [17, 35],
                                 popupAnchor: [0, -35]
                             }),
                             coni: L.icon({
-                                iconUrl: "./images/pin3.png",
+                                iconUrl: "./images/pin7.png",
                                 iconSize: [35, 35],
                                 inconAnchor: [17, 35],
                                 popupAnchor: [0, -35]
@@ -122,6 +122,12 @@
                                 iconSize: [35, 35],
                                 iconAnchor: [17, 35],
                                 popupAnchor: [0, -35]
+                            }),
+                            mercy: L.icon({
+                                iconUrl: "./images/pin6.png",
+                                iconSize: [35, 35],
+                                iconAnchor: [17, 35],
+                                popupAnchor: [0, -35]
                             })
 
                         }
@@ -136,20 +142,7 @@
 
                         //SECCION TORREBIARTE
 
-                        marcadorPersonalizado(
-                            15.475966,
-                            -90.370313,
-                            "torrebiarte",
-                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Festival del Conocimiento"
-                        );
-
-                        marcadorPersonalizado(
-                            15.466496,
-                            -90.36759,
-                            "torrebiarte",
-                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Lectoaventuras"
-                        );
-
+                        //chisec
                         marcadorPersonalizado(
                             15.812473,
                             -90.291431,
@@ -157,64 +150,65 @@
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>PROFUTURO"
                         );
 
+                        //coban
                         marcadorPersonalizado(
-                            15.470239,
-                            -90.373521,
+                            15.498472009916338, -90.36029797366228,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Festival del Conocimiento"
+                        );
+                        marcadorPersonalizado(
+                            15.468632803742874, -90.4649433111226,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Lectoaventuras"
+                        );
+                        marcadorPersonalizado(
+                            15.497712571888274, -90.40372541869827,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>PROFUTURO"
                         );
-
                         marcadorPersonalizado(
-                            15.36567,
-                            -90.47924,
-                            "torrebiarte",
-                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
-                        );
-
-                        marcadorPersonalizado(
-                            15.423617,
-                            -90.331001,
-                            "torrebiarte",
-                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>PROFUTURO"
-                        );
-
-                        marcadorPersonalizado(
-                            15.470978,
-                            -90.372972,
+                            15.443384937951738, -90.4232362438738,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Centro de Atención Tecnológica (CEATEC)"
                         );
-
                         marcadorPersonalizado(
-                            15.470242,
-                            -90.373232,
-                            "torrebiarte",
-                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
-                        );
-                        marcadorPersonalizado(
-                            15.42362,
-                            -90.330929,
+                            15.505562260506714, -90.41266222135309,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
                         );
 
+                        //chamelco
                         marcadorPersonalizado(
-                            15.477815,
-                            -90.310303,
+                            15.40501265319463, -90.23140287697245,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
+                        );
+                        marcadorPersonalizado(
+                            15.39840250674629, -90.26736419699277,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>PROFUTURO"
+                        );
+
+                        //carcha
+                        marcadorPersonalizado(
+                            15.488545627169724, -90.26971948619062,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
                         );
 
+                        //sancris
                         marcadorPersonalizado(
-                            15.365643,
-                            -90.479059,
+                            15.334008431786426, -90.45809927152536,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
                         );
-
                         marcadorPersonalizado(
-                            15.363576,
-                            -90.487426,
+                            15.37080757507035, -90.46420136716205,
+                            "torrebiarte",
+                            "<b>Fundación Miguel Torrebiarte Sohanin</b><br>FUNDAMITO"
+                        );
+                        marcadorPersonalizado(
+                            15.372145103597033, -90.49327059445325,
                             "torrebiarte",
                             "<b>Fundación Miguel Torrebiarte Sohanin</b><br>Espacio Amigo de la Lactancia Materna"
                         );
@@ -283,42 +277,15 @@
                             "conexion",
                             "<b>CONEXION</b><br>Jóvenes conectando territorios sostenibles"
                         );
+
                         // SECCIÓN ENFANTS DU MONDE
+                        // -coban
                         marcadorPersonalizado(
                             15.470024,
                             -90.366590,
                             "enfants",
                             "<b>Enfants du Monde</b><br>Educación Bilingüe Intercultural"
                         );
-
-                        marcadorPersonalizado(
-                            15.788628,
-                            -89.612747,
-                            "enfants",
-                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-                        );
-
-                        marcadorPersonalizado(
-                            15.310709,
-                            -90.235187,
-                            "enfants",
-                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-                        );
-
-                        marcadorPersonalizado(
-                            15.434526,
-                            -90.326157,
-                            "enfants",
-                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-                        );
-
-                        marcadorPersonalizado(
-                            15.475463,
-                            -90.317086,
-                            "enfants",
-                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
-                        );
-
                         marcadorPersonalizado(
                             15.468903,
                             -90.382794,
@@ -326,11 +293,57 @@
                             "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
                         );
 
+                        // --chahal
+                        marcadorPersonalizado(
+                            15.788628,
+                            -89.612747,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
+
+                        // --tamahu
+                        marcadorPersonalizado(
+                            15.310709,
+                            -90.235187,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
+
+                        // --chamelco
+                        marcadorPersonalizado(
+                            15.434526,
+                            -90.326157,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
+
+                        // --carcha
+                        marcadorPersonalizado(
+                            15.475463,
+                            -90.317086,
+                            "enfants",
+                            "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
+
+
+                        //tactic
                         marcadorPersonalizado(
                             15.323254,
                             -90.357144,
                             "enfants",
                             "<b>Enfants du Monde</b><br>Programa EBI \"Leonel Velásquez\""
+                        );
+
+                        // SECCIÓN MERCY
+                        marcadorPersonalizado(
+                            15.6925992670395, -90.65929202883535,
+                            "mercy",
+                            "<b>Mercy Corps</b><br>Kaw Ixqa'al NIÑA FUERTE"
+                        );
+                        marcadorPersonalizado(
+                            15.678650150225723, -90.65348565767069,
+                            "mercy",
+                            "<b>Mercy Corps</b><br>Kaw Ixqa'al NIÑA FUERTE"
                         );
                         ;
                     </script>

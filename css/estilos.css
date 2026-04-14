@@ -149,18 +149,19 @@ h4 {
 
 .radial-container {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 450px;
+    height: 450px;
     margin: auto;
 }
 
 .centro {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     background: white;
     border-radius: 50%;
     display: flex;
@@ -171,16 +172,16 @@ h4 {
 }
 
 .centro img {
-    max-width: 70%;
+    max-width: 80%;
 }
 
 .eje {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 175px);
-    width: 180px;
-    padding: 15px;
+    transform-origin: center;
+    width: 160px;
+    padding: 12px;
     border-radius: 15px;
     color: white;
     font-weight: bold;
@@ -190,24 +191,25 @@ h4 {
 
 .eje1 {
     background: #8e44ad;
+    transform: translate(-50%, -180px);
 }
 
 .eje2 {
     background: #27ae60;
+    transform: translate(120px, -60px);
 }
 
 .eje3 {
     background: #16a085;
+    transform: translate(120px, 80px);
 }
 
 .eje4 {
     background: #e74c3c;
+    transform: translate(-275px, 80px);
 }
 
 .eje5 {
     background: #f39c12;
-}
-
-#carouselEjes .carousel-inner {
-    overflow: visible;
+    transform: translate(-275px, -60px);
 }
